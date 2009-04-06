@@ -1,54 +1,57 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-	
 	<title>rev=canonical: url shortening that doesn't hurt the internet</title>
-<style>
-h1, h2, h3 {
-	font-family:'Helvetica Neue','Helvetica','Arial',sans-serif;
-	font-weight:bolder;
-	letter-spacing:-1px;
-	margin-bottom: 0;
-}
-
-h1 { color: #FFD700; }
-
-p { margin-top: 0;}
-body {
-  width: 640px;
-  margin: 0px auto; 
-  font-family:Arial,Helvetica,sans-serif;
-  font-size:16px;
-  background-color: #000c82;
-}
-
-code {
-	font-family: monaco, fixed;
-	font-size: 12px;
-}
-
-li { 
-	font-size: 18px;
-}
-
-#page { background-color: white; padding: 30px;}
-</style>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+		html, body {
+			width: 640px;
+			margin: 0px auto; 
+			font-family: Arial,Helvetica,sans-serif;
+			font-size: 16px;
+			background-color: #000c82;
+			color: black; /* always set color if you set background */
+		}
+
+		h1, h2, h3 {
+			font-family: 'Helvetica Neue','Helvetica','Arial',sans-serif;
+			font-weight: bolder;
+			letter-spacing: -1px;
+			margin-bottom: 0;
+		}
+
+		h1 { color: #FFD700; }
+
+		p { margin-top: 0;}
+
+		code {
+			font-family: monaco, fixed;
+			font-size: 12px;
+		}
+
+		li { 
+			font-size: 18px;
+		}
+
+		#page { background-color: white; padding: 30px;}
+	</style>
 </head>
+
 <body>
 <div id="page">
-<h1 style="display: inline; ">RevCanonical</h1> <span style="color: #FF5f1b;">url shortening that doesn't hurt the internet</span>
+<h1 style="display: inline;">RevCanonical</h1> <span style="color: #FF5f1b;">url shortening that doesn't hurt the internet</span>
 <p>
 <div id="main">
 {% if not link %}
-<form method="get">
-	Enter Web Address (URL) Here:
-	<input type="text" name="url" value="{{ url }}" size="60">
+<form method="get" action="">
+	<label for="url">Enter Web Address (URL) Here:</label>
+	<input type="text" name="url" id="url" value="{{ url }}" size="60">
 	<input type="Submit" name="Shorten" value="Shorten">
 </form>
 {% else %}
 <form>
-Rev-canonicalized URL! <i>(hopefully shorter):</i><br /> <input type="text" value="{{ link }}" size="60">
+<p>Rev-canonicalized URL! <em>(hopefully shorter):</em></p>
+<input type="text" value="{{ link }}" size="60">
 <p>
 	<small><a href="/">do another?</a></small>
 </p>
