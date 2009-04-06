@@ -1,0 +1,97 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+	
+	<title>rev=canonical: url shortening that doesn't hurt the internet</title>
+<style>
+h1, h2, h3 {
+	font-family:'Helvetica Neue','Helvetica','Arial',sans-serif;
+	font-weight:bolder;
+	letter-spacing:-1px;
+	margin-bottom: 0;
+}
+
+h1 { color: #FFD700; }
+
+p { margin-top: 0;}
+body {
+  width: 640px;
+  margin: 0px auto; 
+  font-family:Arial,Helvetica,sans-serif;
+  font-size:16px;
+  background-color: #000c82;
+}
+
+code {
+	font-family: monaco, fixed;
+	font-size: 12px;
+}
+
+li { 
+	font-size: 18px;
+}
+
+#page { background-color: white; padding: 30px;}
+</style>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+<div id="page">
+<h1 style="display: inline; ">RevCanonical</h1> <span style="color: #FF5f1b;">url shortening that doesn't hurt the internet</span>
+<p>
+<div id="main">
+{% if not link %}
+<form method="get">
+	Enter Web Address (URL) Here:
+	<input type="text" name="url" value="{{ url }}" size="60">
+	<input type="Submit" name="Shorten" value="Shorten">
+</form>
+{% else %}
+<form>
+Rev-canonicalized URL! <i>(hopefully shorter):</i><br /> <input type="text" value="{{ link }}" size="60">
+<p>
+	<small><a href="/">do another?</a></small>
+</p>
+</form>
+{% endif %}
+</div>
+{% if error %}
+Whoops, we encountered an error: {{ error }}
+{% endif %}
+<div id="explanation">
+<h3>Huh?</h3>
+<p>RevCanonical is url shortening with a twist. Instead of creating its own super short versions of links, it checks to see if the link owner has published a shortened version of the given page using HTML link element.  If not, we just return the original URL.  And you should bug the link owner about providing a better alternative.</p>
+<h3>Why?</h3>
+<p>URL shorteners are as problematic as they are useful.  They create <acronym title="Single Points of Failure">SPOFs</acronym>, that over any meaningful timeframe are guaranteed to create data loss, eroding the historical record.  And then there are the privacy concerns.  And the usability ones.  See also <a href="http://joshua.schachter.org/2009/04/on-url-shorteners.html">on url shorteners</a>
+and <a href="http://www.scripting.com/stories/2009/03/07/solvingTheTinyurlCentraliz.html">Solving the TinyUrl centralization problem</a>.</p>
+<h3>Details?</h3>
+<p>
+RevCanonical searches the referenced resource for:
+<ul>
+<li><code>&lt;link rev="canonical" href="..."&gt;</code> (i.e. "I am the canonical URL of that page over there")</li>
+<li><code>&lt;link rel="alternate shorter" href="..."&gt;</code> (or truth be told any link rel including the string "alternate short*")</li>
+</ul>
+</p>
+<p>
+There is also an <a href="/api">API</a> version, which returns just the resulting URL.
+</p>
+<h3>Seriously?</h3>
+<p>
+Well sort of.  There aren't currently any sites which support it, but there should be.  See my blog post <a href="http://laughingmeme.org/2009/04/03/url-shortening-hinting/">on whose fault this all is</a>.
+</p>
+</div>
+</div>
+<p style="background-color: white; text-align:center; margin-top:5px; padding: 5px;">
+<small>code by <a href="http://laughingmeme.org">kellan</a>, light design feedback by <a href="http://brandxculture.com">jasmine</a>. another "30 minutes or less" production.</small>
+</p>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-571486-6");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+</body>
+</html>
