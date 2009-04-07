@@ -4,13 +4,16 @@
 	<title>rev=canonical: url shortening that doesn't hurt the internet</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<style type="text/css">
-		html, body {
+		html {
+			background-color: #000c82;
+			color: black; /* always set color if you set background */
+		}
+		body {
 			width: 640px;
 			margin: 0px auto; 
 			font-family: Arial,Helvetica,sans-serif;
 			font-size: 16px;
-			background-color: #000c82;
-			color: black; /* always set color if you set background */
+			background-color: white; padding: 30px;
 		}
 
 		h1, h2, h3 {
@@ -32,8 +35,6 @@
 		li { 
 			font-size: 18px;
 		}
-
-		#page { background-color: white; padding: 30px;}
 	</style>
 </head>
 
@@ -44,9 +45,11 @@
 <div id="main">
 {% if not link %}
 <form method="get" action="">
-	<label for="url">Enter Web Address (URL) Here:</label>
-	<input type="text" name="url" id="url" value="{{ url }}" size="60">
-	<input type="Submit" name="Shorten" value="Shorten">
+	<p><label for="url">Enter Web Address (URL) Here:</label></p>
+	<div>
+		<input type="text" name="url" id="url" value="{{ url }}" size="60">
+		<input type="Submit" name="Shorten" value="Shorten">
+	</div>
 </form>
 {% else %}
 <form>
@@ -68,13 +71,11 @@ Whoops, we encountered an error: {{ error }}
 <p>URL shorteners are as problematic as they are useful.  They create <acronym title="Single Points of Failure">SPOFs</acronym>, that over any meaningful timeframe are guaranteed to create data loss, eroding the historical record.  And then there are the privacy concerns.  And the usability ones.  See also <a href="http://joshua.schachter.org/2009/04/on-url-shorteners.html">on url shorteners</a>
 and <a href="http://www.scripting.com/stories/2009/03/07/solvingTheTinyurlCentraliz.html">Solving the TinyUrl centralization problem</a>.</p>
 <h3>Details?</h3>
-<p>
-RevCanonical searches the referenced resource for:
+<p>RevCanonical searches the referenced resource for:</p>
 <ul>
 <li><code>&lt;link rev="canonical" href="..."&gt;</code> (i.e. "I am the canonical URL of that page over there")</li>
 <li><code>&lt;link rel="alternate shorter" href="..."&gt;</code> (or truth be told any link rel including the string "alternate short*")</li>
 </ul>
-</p>
 <p>
 There is also an <a href="/api">API</a> version, which returns just the resulting URL.
 </p>
