@@ -66,6 +66,8 @@ class RevCanonical:
 		resp = urlfetch.fetch(url)
 		html = resp.content
 
+		fragment = len(url.split('#')) > 1 and '#' + url.split('#')[1] or ''
+
 		shorts = []
 		
 		parser = LinkParser()
@@ -85,14 +87,14 @@ class RevCanonical:
 					if e[1].count('canonical'):
 						shorts.append(l)
 			
-		return self.hrefs(shorts)
+		return self.hrefs(shorts, fragment)
 	
-	def hrefs(self, links):
+	def hrefs(self, links, fragment = ''):
 		hrefs = []
 		for l in links:
 			for e in l:
 				if e[0] == 'href':
-					hrefs.append(e[1])
+					hrefs.append(e[1] + fragment)
 
 		return hrefs;
 
