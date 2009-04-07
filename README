@@ -15,4 +15,6 @@ RevCanonical searches the referenced resource for:
 
 There is also an API version, which returns just the resulting URL.
 
+See also the blog: http://revcanonical.wordpress.com/
+
 !! This code is on github, so it's implicitly somewhat open. Unfortunately it's rediculously unclear what terms you can use/modify this under.  An explicit license and COPYING file should be applied.
