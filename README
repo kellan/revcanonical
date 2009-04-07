@@ -1,0 +1,18 @@
+Huh?
+
+RevCanonical is url shortening with a twist. Instead of creating its own super short versions of links, it checks to see if the link owner has published a shortened version of the given page using HTML link element. If not, we just return the original URL. And you should bug the link owner about providing a better alternative.
+
+Why?
+
+URL shorteners are as problematic as they are useful. They create SPOFs, that over any meaningful timeframe are guaranteed to create data loss, eroding the historical record. And then there are the privacy concerns. And the usability ones. See also on url shorteners and Solving the TinyUrl centralization problem.
+
+Details?
+
+RevCanonical searches the referenced resource for:
+
+    * <link rev="canonical" href="..."> (i.e. "I am the canonical URL of that page over there")
+    * <link rel="alternate shorter" href="..."> (or truth be told any link rel including the string "alternate short*")
+
+There is also an API version, which returns just the resulting URL.
+
+!! This code is on github, so it's implicitly somewhat open. Unfortunately it's rediculously unclear what terms you can use/modify this under.  An explicit license and COPYING file should be applied.
