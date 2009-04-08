@@ -83,6 +83,8 @@ class RevCanonical:
 						shorts.append(l)
 					elif e[1].count('shorter-alternative'):
 						shorts.append(l)
+					elif e[1].count('short_url'):
+						shorts.append(l)
 				elif e[0] == 'rev':
 					if e[1].count('canonical'):
 						shorts.append(l)
